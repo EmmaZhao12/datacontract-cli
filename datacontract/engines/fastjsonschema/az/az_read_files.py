@@ -4,15 +4,23 @@ import os
 from datacontract.model.exceptions import DataContractException
 
 # def yield_s3_files(s3_location, s3_endpoint_url=None):
-def yield_s3_files(s3_endpoint_url, s3_location):
-    fs = s3_fs(s3_endpoint_url)
-    files = fs.glob(s3_location)
+def yield_azure_files(azure_endpoint_url, azure_location):
+    fs = azure_fs(azure_endpoint_url)
+    files = fs.glob(azure_location)
     for file in files:
         with fs.open(file) as f:
             logging.info(f"Downloading file {file}")
             yield f.read()
 
-def s3_fs(s3_endpoint_url):
+def yield_azure_files(azure_location): # Azure servers do not require endpoint_url
+    fs = ad_lfs()
+    files = fs.glob(azure_location)
+    for file in files:
+        with fs.open(file) as f:
+            logging.info(f"Downloading file {file}")
+            yield f.read()
+
+def azure_fs(azure_endpoint_url):
     try:
         import s3fs
     except ImportError as e:
