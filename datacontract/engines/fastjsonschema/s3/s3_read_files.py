@@ -3,8 +3,8 @@ import os
 
 from datacontract.model.exceptions import DataContractException
 
-
-def yield_s3_files(s3_endpoint_url, s3_location):
+def yield_s3_files(s3_location, s3_endpoint_url=None):
+# def yield_s3_files(s3_endpoint_url, s3_location):
     fs = s3_fs(s3_endpoint_url)
     files = fs.glob(s3_location)
     for file in files:
