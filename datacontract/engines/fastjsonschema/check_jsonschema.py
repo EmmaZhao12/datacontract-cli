@@ -232,7 +232,7 @@ def process_azure_file(run, server, schema, model_name, validate):
         azure_location = azure_location.format(quarter=datetime.strftime("%q"))
     json_stream = None
 
-    for file_content in yield_azure_files(azure_location, azure_account): #, azure_account):
+    for file_content in yield_azure_files(azure_location, azure_account):
         if server.delimiter == "new_line":
             json_stream = read_json_lines_content(file_content)
         elif server.delimiter == "array":

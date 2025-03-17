@@ -123,7 +123,6 @@ def import_servers(odcs_contract: Dict[str, Any]) -> Dict[str, Server] | None:
         server.driver = odcs_server.get("driver")
         server.roles = odcs_server.get("roles")
         server.name = server_name
-
         servers[server_name] = server
     return servers
 
